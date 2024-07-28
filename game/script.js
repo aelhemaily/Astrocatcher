@@ -341,16 +341,16 @@ const gameModes = {
     },
     nutstronaut: {
       speedThresholds: [
-        { score: 2, speed: 10 },
-        { score: 3, speed: 10 },
-        { score: 10, speed: 11 },
-        { score: 15, speed: 12 },
-        { score: 20, speed: 14 },
+        { score: 2, speed: 12 },
+        { score: 3, speed: 12 },
+        { score: 10, speed: 13 },
+        { score: 15, speed: 14 },
+        { score: 20, speed: 15 },
         { score: 30, speed: 16 },
         { score: 50, speed: 18 },
         { score: 70, speed: 20 },
-        { score: 90, speed: 21 },
-        { score: 120, speed: 21 }
+        { score: 90, speed: 22 },
+        { score: 120, speed: 22 }
       ],
       ballLimitThresholds: [
         { score: 2, maxBalls: 5 },
@@ -365,16 +365,16 @@ const gameModes = {
       ],
       ballDropIntervalThresholds: [
         { score: 2, interval: 1600 },
-        { score: 5, interval: 1600 },
-        { score: 10, interval: 1400 },
-        { score: 20, interval: 1200 },
-        { score: 30, interval: 1000 },
-        { score: 50, interval: 900 },
-        { score: 70, interval: 800 },
-        { score: 90, interval: 700 },
-        { score: 120, interval: 650 }
+        { score: 5, interval: 1400 },
+        { score: 10, interval: 1200 },
+        { score: 20, interval: 1000 },
+        { score: 30, interval: 800 },
+        { score: 50, interval: 700 },
+        { score: 70, interval: 700 },
+        { score: 90, interval: 600 },
+        { score: 120, interval: 580 }
       ],
-      defaultSpeed: 10, // Initial ball speed for nutstronaut mode
+      defaultSpeed: 12, // Initial ball speed for nutstronaut mode
       defaultMaxBalls: 5, // Initial maximum number of balls for nutstronaut mode
       defaultInterval: 1600 // Initial ball drop interval for nutstronaut mode
     }
