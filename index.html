@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="images/catcher.png">
+    <title>Astrocatcher</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background">
+        <div class="container" id="menu-container">
+            <h1 class="title">Astrocatcher</h1>
+            <div class="menu" id="main-menu">
+                <button class="menu-button" onclick="location.href='game/index.html'">Start Game</button>
+
+
+                <button class="menu-button" onclick="showHowToPlay()">How to Play</button>
+                <button class="menu-button" onclick="showPowerUpsDowns()">Power up/down</button>
+                <button class="menu-button" onclick="showControls()">Controls</button>
+            </div>
+            <div class="menu hidden" id="how-to-play">
+                <button class="close-button" onclick="closeHowToPlay()">X</button>
+                <h2>How to Play</h2>
+                <p>Welcome, Interstellar Adventurer!</p>
+                <p>In Astrocatcher, you pilot a sleek UFO in a cosmic challenge. Comets of vibrant colors streak across the sky—your mission? Catch them all and ascend the cosmos!</p>
+                <p><strong>How to Play:</strong></p>
+                <ul>
+                    <li>Match & Catch: Switch your UFO’s color to match the falling comet.</li>
+                    <li>Avoid Mistakes: Miss a comet or catch the wrong color, and you'll lose a life.</li>
+                    <li>Smash your high score: Challenge yourself and see how far you can take this journey.</li>
+                </ul>
+                <p>Use the power-ups and avoid power-downs detailed in the Power Up/Down menu to navigate through this stellar adventure.</p>
+                <p>Prepare for a dazzling cosmic ride! 🛸✨</p>
+            </div>
+            <div class="menu hidden" id="power-ups-downs">
+                <button class="close-button" onclick="closePowerUpsDowns()">X</button>
+                <h2>Power Ups and Power Downs</h2>
+                <div class="power-ups-downs-container">
+                    <div class="power-ups">
+                        <h3>Power Ups</h3>
+                        <div class="power-item">
+                            <img src="images/heart.png" alt="1UP">
+                            <p><strong>1UP:</strong> Gain an extra life in your intergalactic journey.</p>
+                        </div>
+                        <div class="power-item">
+                            <img src="../images/plusplus.png" alt="Grow Catcher">
+                            <p><strong>Grow Catcher:</strong> Bigger catcher! Expand your UFO.</p>
+                        </div>
+                        <div class="power-item">
+                            <img src="../images/mega-ball.png" alt="Mega Comet">
+                            <p><strong>Mega Comet:</strong> Bigger comets = visibility and catchability.</p>
+                        </div>
+                        <div class="power-item">
+                            <img src="../images/magnet2.png" alt="Magnet">
+                            <p><strong>Magnet:</strong> Attracts comets of your catcher’s color in range!</p>
+                        </div>
+                    </div>
+                    <div class="power-downs">
+                        <h3>Power Downs</h3>
+                        <div class="power-item">
+                            <img src="../images/mine.png" alt="Alien Skull">
+                            <p><strong>Alien Skull:</strong> Lose one life—danger lurks in the cosmos!</p>
+                        </div>
+                        <div class="power-item">
+                            <img src="../images/minusminus.png" alt="Shrink Catcher">
+                            <p><strong>Shrink Catcher:</strong> Smaller catcher! Oh no!</p>
+                        </div>
+                        <div class="power-item">
+                            <img src="../images/shrink.png" alt="Teeny Comet">
+                            <p><strong>Teeny Comet:</strong> Smaller comets, teeny teeny comets.</p>
+                        </div>
+                        <div class="power-item">
+                            <img src="../images/glasses.png" alt="Blurry Vision">
+                            <p><strong>Blurry Vision:</strong> 15 seconds of blurred vision— yikes!</p>
+                        </div>
+                    </div>
+                </div>
+                <p>Harness these boosts to become the ultimate Astrocatcher! 🚀✨</p>
+                <p>Dodge these hazards to maintain your stellar prowess! 🚀🛑</p>
+            </div>
+            <div class="menu hidden" id="controls">
+                <button class="close-button" onclick="closeControls()">X</button>
+                <h2>Controls</h2>
+                <div class="controls-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Action</th>
+                                <th>Hotkey</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><img src="images/up.png" alt="Move Up"></td>
+                                <td>Move Up</td>
+                                <td>Mouse move up / W</td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/left.png" alt="Move Left"></td>
+                                <td>Move Left</td>
+                                <td>Move mouse left / A</td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/down.png" alt="Move Down"></td>
+                                <td>Move Down</td>
+                                <td>Mouse move down / S</td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/right.png" alt="Move Right"></td>
+                                <td>Move Right</td>
+                                <td>Mouse move right / D</td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/catcher-red.png" alt="Red Catcher"></td>
+                                <td>Red Catcher</td>
+                                <td>R, 1</td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/catcher-green.png" alt="Green Catcher"></td>
+                                <td>Green Catcher</td>
+                                <td>G, 2</td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/catcher-blue.png" alt="Blue Catcher"></td>
+                                <td>Blue Catcher</td>
+                                <td>B, 3</td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/catcher-yellow.png" alt="Yellow Catcher"></td>
+                                <td>Yellow Catcher</td>
+                                <td>Y, 4</td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/catcher-orange.png" alt="Orange Catcher"></td>
+                                <td>Orange Catcher</td>
+                                <td>O, 5</td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/catcher-purple.png" alt="Purple Catcher"></td>
+                                <td>Purple Catcher</td>
+                                <td>P, 6</td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/space.png" alt="Cycle Catcher"></td>
+                                <td>Cycle Catcher</td>
+                                <td>Space</td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/h.png" alt="Hover Mode"></td>
+                                <td>Hover Mode</td>
+                                <td>H</td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/esc.png" alt="Pause Game"></td>
+                                <td>Pause Game</td>
+                                <td>Esc</td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/m.png" alt="Toggle Music"></td>
+                                <td>Toggle Music</td>
+                                <td>M</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
