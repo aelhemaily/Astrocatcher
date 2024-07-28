@@ -264,15 +264,15 @@ let currentColorIndex = 0; // Start with the first color
 const gameModes = {
     chill: {
       speedThresholds: [
-        { score: 2, speed: 55 },
-        { score: 20, speed: 9 },
-        { score: 30, speed: 10 },
-        { score: 50, speed: 11 },
-        { score: 60, speed: 12 },
-        { score: 80, speed: 13 },
-        { score: 90, speed: 13 },
-        { score: 100, speed: 13 },
-        { score: 120, speed: 13 }
+        { score: 2, speed: 5 },
+        { score: 20, speed: 6 },
+        { score: 30, speed: 6 },
+        { score: 50, speed: 6 },
+        { score: 60, speed: 7 },
+        { score: 80, speed: 8 },
+        { score: 90, speed: 8 },
+        { score: 100, speed: 8 },
+        { score: 120, speed: 9 }
       ],
       ballLimitThresholds: [
         { score: 2, maxBalls: 3 },
@@ -288,13 +288,13 @@ const gameModes = {
       ballDropIntervalThresholds: [
         { score: 2, interval: 2000 },
         { score: 5, interval: 2000 },
-        { score: 10, interval: 1800 },
-        { score: 20, interval: 1600 },
-        { score: 30, interval: 1400 },
-        { score: 50, interval: 1200 },
-        { score: 70, interval: 1000 },
-        { score: 90, interval: 950 },
-        { score: 120, interval: 900 }
+        { score: 10, interval: 2000 },
+        { score: 20, interval: 1800 },
+        { score: 30, interval: 1600 },
+        { score: 50, interval: 1600 },
+        { score: 70, interval: 1500 },
+        { score: 90, interval: 1400 },
+        { score: 120, interval: 1350 }
       ],
       defaultSpeed: 5, // Initial ball speed for chill mode
       defaultMaxBalls: 3, // Initial maximum number of balls for chill mode
@@ -349,8 +349,8 @@ const gameModes = {
         { score: 30, speed: 16 },
         { score: 50, speed: 18 },
         { score: 70, speed: 20 },
-        { score: 90, speed: 22 },
-        { score: 120, speed: 24 }
+        { score: 90, speed: 21 },
+        { score: 120, speed: 21 }
       ],
       ballLimitThresholds: [
         { score: 2, maxBalls: 5 },
@@ -369,10 +369,10 @@ const gameModes = {
         { score: 10, interval: 1400 },
         { score: 20, interval: 1200 },
         { score: 30, interval: 1000 },
-        { score: 50, interval: 800 },
-        { score: 70, interval: 600 },
-        { score: 90, interval: 400 },
-        { score: 120, interval: 300 }
+        { score: 50, interval: 900 },
+        { score: 70, interval: 800 },
+        { score: 90, interval: 700 },
+        { score: 120, interval: 650 }
       ],
       defaultSpeed: 10, // Initial ball speed for nutstronaut mode
       defaultMaxBalls: 5, // Initial maximum number of balls for nutstronaut mode
