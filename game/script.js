@@ -191,10 +191,10 @@ if (playAgainButton) {
 
     // Color palette event listeners
     document.getElementById('red').addEventListener('click', () => changeCatcherColor('red'));
-    document.getElementById('green').addEventListener('click', () => changeCatcherColor('green'));
-    document.getElementById('yellow').addEventListener('click', () => changeCatcherColor('yellow'));
-    document.getElementById('blue').addEventListener('click', () => changeCatcherColor('blue'));
     document.getElementById('orange').addEventListener('click', () => changeCatcherColor('orange'));
+    document.getElementById('yellow').addEventListener('click', () => changeCatcherColor('yellow'));
+    document.getElementById('green').addEventListener('click', () => changeCatcherColor('green'));
+    document.getElementById('blue').addEventListener('click', () => changeCatcherColor('blue'));
     document.getElementById('purple').addEventListener('click', () => changeCatcherColor('purple'));
 
     // Event listener for the custom pause and resume events
@@ -791,17 +791,17 @@ document.addEventListener('keydown', (event) => {
                 currentColorIndex = colors.indexOf('red');
                 break;
             case 'g':
-            case '2':
+            case '4':
                 catcherImage.src = colorImages.green;
                 currentColorIndex = colors.indexOf('green');
                 break;
             case 'b':
-            case '3':
+            case '5':
                 catcherImage.src = colorImages.blue;
                 currentColorIndex = colors.indexOf('blue');
                 break;
             case 'y':
-            case '4':
+            case '3':
                 catcherImage.src = colorImages.yellow;
                 currentColorIndex = colors.indexOf('yellow');
                 break;
@@ -811,7 +811,7 @@ document.addEventListener('keydown', (event) => {
                 currentColorIndex = colors.indexOf('purple');
                 break;
             case 'o':
-            case '5':
+            case '2':
                 catcherImage.src = colorImages.orange;
                 currentColorIndex = colors.indexOf('orange');
                 break;
@@ -1045,7 +1045,7 @@ if (resumeButton) {
 
 // Function to enable or disable the color palette click events
 function toggleColorPalette(enabled) {
-    const colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple'];
+    const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
     colors.forEach(color => {
         const element = document.getElementById(color);
         if (element) {
