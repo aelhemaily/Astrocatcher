@@ -1,0 +1,808 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+#game {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: #5b6ac3;
+    overflow: hidden;
+    background-image: url("images/bg2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+#catcher {
+    position: absolute;
+    bottom: 10px;
+    width: 120px; /* Initial width */
+    height: 60px; /* Fixed height */
+    border: none;
+    transition: width 0.5s; /* Smooth transition for width changes */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Hide any overflow */
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+    animation: rock 4.5s infinite; /* Apply the balanced rocking animation */
+}
+
+@keyframes rock {
+    0% {
+        transform: rotate(-4deg); /* Slightly more pronounced tilt to the left */
+    }
+    50% {
+        transform: rotate(4deg); /* Slightly more pronounced tilt to the right */
+    }
+    100% {
+        transform: rotate(-4deg); /* Return to initial tilt */
+    }
+}
+
+
+
+#catcher img {
+    width: 100%; /* Make image fill the width of the catcher */
+    height: 100%; /* Make image fill the height of the catcher */
+    object-fit: fill; /* Stretch image to fill both dimensions */
+}
+
+
+/* Base styles for the ball */
+.ball {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: solid 3px #000000;
+    background-color: #ff0000; /* Default ball color */
+    box-shadow: inset -3px -3px 5px rgba(0, 0, 0, 0.5),
+                inset 3px 3px 5px rgba(255, 255, 255, 0.6),
+                4px 4px 6px rgba(0, 0, 0, 0.5),
+                -4px -4px 6px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(255, 255, 255, 0.8); /* White glow */
+               
+   
+}
+
+    
+/* Classes for ball colors with border styling */
+.ball-red {
+    border: solid 3px #ff0000;
+}
+
+.ball-green {
+    border: solid 3px #00ff00;
+}
+
+.ball-blue {
+    border: solid 3px #00e1ff;
+}
+
+.ball-yellow {
+    border: solid 3px #ffff00;
+}
+
+.ball-orange {
+    border: solid 3px #ffa500;
+}
+
+.ball-purple {
+    border: solid 3px #800080;
+}
+
+
+/* Blazing trail above the ball */
+.ball::after {
+    content: "";
+    position: absolute;
+    bottom: 100%; /* Position the trail above the ball */
+    left: 50%;
+    transform: translateX(-50%); /* Center the trail on the ball */
+    width: 11px; /* Adjust trail width as needed */
+    height: 20vh; /* Adjust height as needed */
+    background: linear-gradient(transparent, transparent); /* Default trail color */
+    opacity: 0.2; /* Adjust trail opacity */
+    z-index: 1; /* Ensure the trail is above the ball */
+    animation: flicker 1s infinite alternate;
+}
+
+/* Trail color classes */
+.trail-red::after {
+    background: linear-gradient(transparent, #ff0000);
+}
+
+.trail-green::after {
+    background: linear-gradient(transparent, #00ff00);
+}
+
+.trail-blue::after {
+    background: linear-gradient(transparent, #62e2eb);
+}
+
+.trail-yellow::after {
+    background: linear-gradient(transparent, #ffff00);
+}
+
+.trail-orange::after {
+    background: linear-gradient(transparent, #ffa500);
+}
+
+.trail-purple::after {
+    background: linear-gradient(transparent, #800080);
+}
+
+/* Optional flickering animation for the trail */
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Animation effect for ball-catcher collision */
+@keyframes ballCatchAnimation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1) rotate(360deg);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(0.5) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Class to trigger the animation */
+.ball-catch {
+    animation: ballCatchAnimation 0.3s ease-out forwards; /* Shortened duration */
+}
+
+/* Class to hide the trail during ball catching animation */
+.no-trail::after {
+    display: none;
+}
+
+  
+
+#score, #lives {
+    position: absolute;
+    top: 10px;
+    font-size: 24px;
+    color: #fff;
+    font-weight: 700;
+}
+
+#score {
+    left: 10px;
+    display: flex;
+    
+}
+
+#lives {
+    right: 10px;
+}
+
+/* Styling for gameOver and pauseOverlay */
+#gameOver, #pauseOverlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #003366, #000000); /* Space-themed gradient */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    display: none; /* Hidden by default */
+    z-index: 1000; /* Ensure it's on top */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7); /* Shadow for depth */
+}
+
+/* Message styling inside gameOver and pauseOverlay */
+#gameOver .message, #pauseOverlay .message {
+    margin: 0;
+    z-index: 1000; /* Ensure message is on top */
+}
+
+/* Button styling inside gameOver and pauseOverlay */
+#gameOver button, #pauseOverlay button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #003366, #000000); /* Space-themed gradient */
+    border: 2px solid #ffffff; /* White border */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s; /* Smooth transitions */
+}
+
+/* Button hover and active states */
+#gameOver button:hover, #pauseOverlay button:hover {
+    background: linear-gradient(135deg, #001a33, #333333); /* Darker gradient on hover */
+}
+
+#gameOver button:active, #pauseOverlay button:active {
+    transform: scale(0.95); /* Slightly scale down on click */
+}
+
+/* Hidden class */
+.hidden {
+    display: none;
+}
+
+
+#colorPalette {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.colorButton {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    cursor: pointer;
+}
+
+
+
+
+.powerup {
+    position: absolute;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    width: 70px; /* Fixed width, adjust as needed */
+    height: 70px; /* Fixed height, adjust as needed */
+    line-height: 70px; /* Center text vertically */
+    border: none; /* Remove the default border */
+    background-size: contain; /* Scale the image to fit the element */
+    background-position: center; /* Center the image within the element */
+    background-repeat: no-repeat; /* Prevent image from repeating */
+    filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.8)) drop-shadow(0 0 20px rgba(0, 255, 0, 0.5));
+}
+
+/* Specific styles for each power-up type */
+.powerup-1up {
+    background-image: url("images/heart.png"); /* Correct path to your image */
+}
+
+
+.powerup-plusplus {
+    background-image: url("images/plusplus.png"); /* Correct path to your image */
+    
+    
+}
+
+.extra-catcher {
+    background-color: rgb(8, 49, 17); /* Different color for extra catchers */
+    box-shadow: inset -3px -3px 5px rgba(0, 0, 0, 0.4), 
+                inset 3px 3px 5px rgba(255, 255, 255, 0.5), 
+                3px 3px 5px rgba(0, 0, 0, 0.5);
+    width: 100px;
+}
+
+.powerup-megaball {
+    background-image: url("images/mega-ball.png");
+}
+
+/* powerdowns*/
+/* Common styles for power-downs */
+.powerdown {
+    position: absolute;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    width: 70px; /* Fixed width, adjust as needed */
+    height: 70px; /* Fixed height, adjust as needed */
+    line-height: 70px; /* Center text vertically */
+    border: none; /* Remove the default border */
+    background-size: contain; /* Scale the image to fit the element */
+    background-position: center; /* Center the image within the element */
+    background-repeat: no-repeat; /* Prevent image from repeating */
+    filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.8)) drop-shadow(0 0 20px rgba(255, 0, 0, 0.5));
+}
+
+/* Specific styles for individual power-down types */
+.powerdown-minusone {
+    background-image: url("images/mine.png"); /* Correct path to your image */
+}
+
+.powerdown-minusminus {
+    background-image: url("images/minusminus.png"); /* Correct path to your image */
+}
+
+
+
+.powerup-magnet {
+    background-image: url("images/magnet2.png"); /* Correct path to your image */
+}
+
+.powerdown-teenyball {
+    background-image: url("images/shrink.png"); /* Color for the Teeny Ball power-down */
+}
+
+
+#livesContainer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 5px; /* Space between hearts */
+}
+
+#livesContainer img {
+    width: 30px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Add this to your CSS */
+.heart-icon {
+    width: 30px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 5px; /* Space between hearts */
+}
+
+.magnet-active {
+    position: absolute; /* Position it relative to the game container */
+    filter: drop-shadow(0 0 10px rgba(0, 234, 255, 0.8)) drop-shadow(0 0 10px rgba(156, 247, 255, 0.824)) !important;
+
+    border: none; /* Remove the default border */
+    animation: magnet-pulse 1s infinite; /* Animation effect */
+}
+
+
+
+@keyframes magnet-pulse {
+    0% {
+        transform: scale(1);
+        /* box-shadow: 0 0 30px rgb(0, 255, 251); */
+    }
+    50% {
+        transform: scale(1.1);
+        /* box-shadow: 0 0 60px rgb(0, 221, 255); Brighter and larger effect */
+    }
+    100% {
+        transform: scale(1);
+        /* box-shadow: 0 0 30px rgb(0, 217, 255); */
+    }
+}
+/* Virus power-down specific styles */
+.powerdown-virus {
+    background-image: url("images/glasses.png");
+}
+
+/* Blur glitch effect */
+.glitch-effect {
+    position: relative;
+    animation: blurEffect 3s infinite;
+}
+
+/* Blur effect animation */
+@keyframes blurEffect {
+    0% {
+        filter: blur(0);
+    }
+    25% {
+        filter: blur(2px);
+    }
+    50% {
+        filter: blur(1px);
+    }
+    75% {
+        filter: blur(4px);
+    }
+    100% {
+        filter: blur(0);
+    }
+}
+
+#countdown {
+    position: fixed; /* Use fixed positioning for better control over centering */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the element */
+    font-size: 10em;
+    color: white;
+    text-align: center;
+    z-index: 1000; /* Ensure it's on top */
+    opacity: 1;
+}
+
+.countdown-visible {
+    opacity: 1;
+}
+
+.countdown-hidden {
+    opacity: 0;
+}
+
+@keyframes countdownAnimation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+}
+
+.countdown-anim {
+    animation: countdownAnimation 1s forwards;
+}
+
+/* Additional styling for when "CATCH!" is shown */
+#countdown.catch {
+    
+    top: 50%; 
+    left: 48%; 
+    transform: translate(-50%, -50%); 
+    font-size: 4em; 
+    color: rgb(238, 7, 7);
+    text-align: center;
+    z-index: 1000;
+    opacity: 1; 
+}
+
+
+
+#music-icon {
+    font-size: 2em;
+    cursor: pointer;
+    color: blue;
+    display: block;
+    margin-top: 10px;
+    position: absolute; /* Ensures the icon is always in a fixed position */
+    top: 30px; /* Adjust the position as needed */
+    left: 0; /* Adjust the position as needed */
+    z-index: 10400; /* Ensures the icon stays on top */
+    text-align: center;
+    line-height: 1; /* Ensure text alignment */
+}
+
+#music-icon.muted::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: rgba(255, 0, 0, 0.5); /* Optional: semi-transparent background */
+    transform: rotate(-45deg); /* Diagonal line */
+    transform-origin: center;
+    
+}
+
+#homeicon {
+    font-size: 3em;
+    cursor: pointer;
+    color: blue;
+    display: block;
+   
+    position: fixed; /* Ensures the icon is always in a fixed position */
+    margin-top: 15vh;
+
+    z-index: 104030; /* Ensures the icon stays on top */
+    text-align: center;
+    line-height: 1; /* Ensure text alignment */
+}
+
+
+
+
+#effect-icon {
+    font-size: 2em;
+    cursor: pointer;
+    color: green;
+    display: block;
+    position: absolute; /* Ensures the icon is always in a fixed position */
+    top: 30px; /* Same as music icon for alignment */
+    margin-top: 10px;
+    left: 60px; /* Adjust to the right of the music icon */
+    z-index: 1000; /* Ensures the icon stays on top */
+    text-align: center; /* Center the text */
+    line-height: 1; /* Ensure proper text alignment */
+}
+
+#effect-icon.muted {
+    color: gray; /* Color for muted state */
+}
+
+
+/* Mission Settings Menu */
+.mission-settings {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #003366, #000000); /* Space-themed gradient */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    display: none; /* Hidden by default */
+    z-index: 1000; /* Ensure it's on top */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7); /* Shadow for depth */
+}
+
+.mission-settings h1 {
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+.mission-settings .setting {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.mission-settings .setting label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.mission-settings .setting .game-mode-options label {
+    display: block;
+    margin: 5px 0;
+}
+
+.mission-settings #initiateMissionButton {
+  
+
+    background: linear-gradient(135deg, #003366, #000000); /* Space-themed gradient */
+   
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.5em; /* Large font size */
+    color: #ffffff; /* White text */
+    background: linear-gradient(135deg, #003366, #000000); /* Space-themed gradient */
+    border: 2px solid #ffffff; /* White border */
+   
+    padding: 15px 30px; /* Padding for size */
+    cursor: pointer; /* Pointer cursor on hover */
+    text-align: center; /* Center text */
+    z-index: 1000; /* Ensure it's on top */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7); /* Shadow for depth */
+    transition: background 0.3s, transform 0.3s; /* Smooth transitions */
+    font-family: 'Press Start 2P', cursive;
+}
+
+#initiate-button:hover {
+    background: linear-gradient(135deg, #001a33, #333333); /* Darker gradient on hover */
+}
+
+#initiate-button:active {
+    transform: scale(0.95); /* Slightly scale down on click */
+}
+
+
+
+.mission-settings #initiateMissionButton:hover {
+    background: #004d99;
+}
+
+/* Ensure labels are easier to tap */
+.setting label {
+    cursor: pointer; /* Show pointer cursor */
+    padding: 10px; /* Increase padding for larger tap area */
+    display: block; /* Ensure labels take up full width */
+}
+
+/* Optional: Adjust styles for better touch feedback */
+.setting label:hover {
+    background-color: #030951; /* Light background on hover */
+}
+
+/* Make buttons more touch-friendly */
+#initiateMissionButton {
+    padding: 12px 24px; /* Adjust padding for larger tap area */
+    cursor: pointer; /* Show pointer cursor */
+}
+
+input[type="radio"] {
+    transform: scale(2); /* Make the radio button circle twice as large */
+    margin: 0 10px 0 0; /* Adjust margin as needed */
+}
+
+input[type="checkbox"] {
+    transform: scale(2); /* Make the radio button circle twice as large */
+    margin: 0 10px 0 0; /* Adjust margin as needed */
+}
+
+
+
+
+/* Ultra High Resolution Screens (4K and above, 3840px and above) */
+@media (min-width: 3840px) {
+    #catcher {
+        width: 240px; /* 120 * (3840 / 1920) */
+        height: 120px; /* 60 * (3840 / 1920) */
+    }
+}
+
+/* Large Desktops (1920px to 3839px) */
+@media (min-width: 1920px) and (max-width: 3839px) {
+    #catcher {
+        width: 120px; /* Same as base size */
+        height: 60px; /* Same as base size */
+    }
+}
+
+/* Medium to Large Desktops (1200px to 1919px) */
+@media (min-width: 1200px) and (max-width: 1919px) {
+    #catcher {
+        width: 80px; /* 120 * (1200 / 1920) */
+        height: 40px; /* 60 * (1200 / 1920) */
+    }
+
+    .ball {
+       
+        width: 15px;
+        height: 15px;
+      
+       
+    }
+
+    #countdown {
+        font-size: 5em;
+        top: 40%; 
+        left: 48%; 
+        transform: translate(-50%, -50%); 
+        font-size: 5em; 
+       
+        text-align: center;
+        z-index: 1000;
+        opacity: 1; 
+    }
+
+
+    #countdown.catch {
+    
+        top: 40%; 
+        left: 38%; 
+        transform: translate(-50%, -50%); 
+        font-size: 5em; 
+        color: rgb(238, 7, 7);
+        text-align: center;
+        z-index: 1000;
+        opacity: 1; 
+    }
+
+}
+
+/* Tablets and Smaller Desktops (768px to 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+    #catcher {
+        width: 110px; /* 120 * (768 / 1920) */
+        height: 55px; /* 60 * (768 / 1920) */
+    }
+
+    #countdown {
+        font-size: 5em;
+    }
+
+
+    #countdown.catch {
+    
+        top: 50%; 
+        left: 35%; 
+        transform: translate(-50%, -50%); 
+        font-size: 5em; 
+        color: rgb(238, 7, 7);
+        text-align: center;
+        z-index: 1000;
+        opacity: 1; 
+    }
+}
+
+/* Mobile Devices in Landscape Mode (576px to 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+    #catcher {
+        width: 100px; /* 120 * (576 / 1920) */
+        height: 50px; /* 60 * (576 / 1920) */
+    }
+
+    #countdown {
+        font-size: 5em;
+    }
+
+
+    #countdown.catch {
+    
+        top: 50%; 
+        left: 35%; 
+        transform: translate(-50%, -50%); 
+        font-size: 5em; 
+        color: rgb(238, 7, 7);
+        text-align: center;
+        z-index: 1000;
+        opacity: 1; 
+    }
+
+
+}
+
+/* Mobile Devices in Portrait Mode (575px and below) */
+@media (max-width: 575px) {
+    #catcher {
+        width: 80px; /* 120 * (575 / 1920) */
+        height: 40px; /* 60 * (575 / 1920) */
+    }
+
+#missionSettings {
+    width:28vh;
+    font-size: 14px;
+}
+
+    #missionSettings p {
+        margin-left: 40px;
+        font-size: 12px;
+    }
+    #initiateMissionButton 
+    {
+       font-size: 16px!important;
+       padding: 10px !important;
+    }
+
+
+    #countdown {
+        font-size: 3em;
+    }
+
+
+    #countdown.catch {
+    
+        top: 50%; 
+        left: 31%; 
+        transform: translate(-50%, -50%); 
+        font-size: 3em; 
+        color: rgb(238, 7, 7);
+        text-align: center;
+        z-index: 1000;
+        opacity: 1; 
+    }
+
+}
+
+
+/* Mobile Devices in Portrait Mode (575px and below) */
+@media (max-width: 345px) {
+    #catcher {
+        width: 80px; /* 120 * (575 / 1920) */
+        height: 40px; /* 60 * (575 / 1920) */
+    }
+
+#missionSettings {
+    width:20vh;
+    font-size: 12px;
+}
+
+    #missionSettings p {
+        margin-left: 40px;
+        font-size: 12px;
+    }
+    #initiateMissionButton 
+    {
+       font-size: 16px!important;
+       padding: 10px !important;
+    }
+
+
+
+
+
+}
+

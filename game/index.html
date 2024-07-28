@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" type="image/png" href="images/catcher.png">
+
+
+    <title>Astroatcher</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game">
+        <div id="countdown" class="countdown-hidden"></div>
+        <div id="colorPalette">
+            <div class="colorButton" id="red" style="background-color: red;"></div>
+            <div class="colorButton" id="green" style="background-color: green;"></div>
+            <div class="colorButton" id="blue" style="background-color: rgb(64, 224, 208);"></div>
+            <div class="colorButton" id="yellow" style="background-color: yellow;"></div>
+            <div class="colorButton" id="orange" style="background-color: #ff6700;"></div>
+            <div class="colorButton" id="purple" style="background-color: purple;"></div>
+        </div>
+        <div id="catcher">
+            <img src="images/catcher.png" alt="UFO Catcher">
+        </div>
+
+        <div id="score">Score: 0
+            
+        </div>
+        <a href="../main-menu.html" id="homeicon">🏠</a>
+ 
+
+        <!-- Add this in your HTML file -->
+<div id="livesContainer">
+
+</div>
+        <div id="lives"></div>
+    </div>
+    <div id="gameOver" class="hidden">
+        <div class="message">
+            <h1>Game Over</h1>
+            <p>Your score: <span id="finalScore"></span></p>
+            <p>Game mode: <span id="gameMode"></span></p>
+        <p>Autocolor: <span id="autoColorStatus"></span></p>
+            
+            <button id="playAgain">Play Again</button>
+        </div>
+    </div>
+    <div id="pauseOverlay" class="hidden">
+        <div class="message">
+            <h1>Game Paused</h1>
+            <button id="resumeGame">Resume</button>
+        </div>
+    </div>
+    
+    <div id="missionSettings" class="mission-settings">
+        <h1>Mission Settings</h1>
+        <div class="setting">
+          Game mode:
+            <div class="game-mode-options">
+                <label><input type="radio" name="gameMode" value="chill"> Chill</label>
+                <label><input type="radio" name="gameMode" value="normal" checked> Normal</label>
+                <label><input type="radio" name="gameMode" value="nutstronaut"> Nutstronaut</label>
+            </div>
+        </div>
+        <div class="setting">
+            <label for="autoColor"><input type="checkbox" id="autoColor"> Catcher Auto Color*</label>
+            <p>*recommended for touch screens</p>
+        </div>
+        <button id="initiateMissionButton">Initiate Mission</button>
+    </div>
+   
+    <script src="script.js"></script>
+    
+</body>
+</html>

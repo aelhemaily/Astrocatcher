@@ -1,0 +1,979 @@
+/* General body and html styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    color: white;
+    overflow: hidden; /* Prevent scrolling when the menu is expanded */
+}
+
+.background {
+    background: url('4k.png') no-repeat center center fixed; 
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background: linear-gradient(135deg, #003366, #000000);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+    width: 90%;
+    max-width: 240px; /* Narrower container */
+    border: solid 1px rgb(35, 8, 111);
+    transition: all 0.5s ease;
+  
+}
+
+.title {
+    font-size: 2rem; /* Smaller title */
+    margin-bottom: 15px;
+    font-family: 'Press Start 2P', cursive; /* A retro font for a gaming feel */
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Reduced gap */
+    align-items: center;
+    
+}
+
+.menu-button {
+    background: linear-gradient(135deg, #003366, #000000);
+    border: 2px solid white;
+    border-radius: 10px;
+    color: white;
+    font-size: 0.9rem; /* Smaller font size */
+    padding: 12px 12px; /* Smaller padding for a thinner button */
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    width: 70%;
+    font-family: 'Press Start 2P', cursive; /* A retro font for a gaming feel */
+    margin-bottom: 15px;
+}
+
+.menu-button:hover {
+    background: white;
+    color: #003366;
+    transform: scale(1.05);
+}
+
+.menu-button:active {
+    background: #003366;
+    color: white;
+}
+
+/* Expanded Menu Styles */
+.expand-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #003366, #000000);
+    z-index: 1000; /* Ensure it's on top of other elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+/* Animation for showing the expanded menu */
+.expand-menu.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Styles for the close button in the expanded menu */
+.expand-menu .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Hide main menu when expanded menu is visible */
+.hidden {
+    display: none;
+}
+/* Default Styles for Power Ups and Power Downs */
+.power-ups-downs-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 30px;
+    flex-wrap: wrap; /* Allow items to wrap */
+}
+
+.power-ups,
+.power-downs {
+    flex: 1;
+    min-width: 250px; /* Minimum width to ensure content fits */
+    max-width: 100%; /* Full width for smaller screens */
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    padding: 20px; /* Adjusted padding for better fit */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: stretch; /* Ensure items fill the container */
+}
+
+h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+.power-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-sizing: border-box;
+    width: 100%; /* Full width for each item */
+    box-sizing: border-box;
+}
+
+.power-item img {
+    max-width: 80px;
+    max-height: 80px;
+    margin-right: 15px; /* Space between image and text */
+    object-fit: contain; /* Ensure the image scales correctly */
+}
+
+.power-item p {
+    font-size: 1.2rem;
+    margin: 0;
+    color: #ddd;
+    word-wrap: break-word; /* Handle long words */
+}
+
+/* Ultra High Resolution Screens (4K and above, 3840px and above) */
+@media (min-width: 3840px) {
+    .container {
+        width: 70%; /* More space on ultra high-resolution screens */
+        max-width: 360px; /* Larger container */
+    }
+
+    .title {
+        font-size: 3rem; /* Larger title for ultra high-resolution screens */
+    }
+
+    .menu-button {
+        font-size: 1.2rem; /* Larger font size for ultra high-resolution screens */
+        padding: 18px; /* Larger padding */
+    }
+
+    .menu {
+        gap: 40px; /* Larger gap between buttons */
+    }
+
+    .power-ups-downs-container {
+        padding: 40px; /* More padding for ultra high-resolution screens */
+        gap: 40px; /* More gap between sections */
+    }
+
+    .power-ups,
+    .power-downs {
+        min-width: 400px; /* Larger sections */
+        padding: 40px; /* Larger padding */
+    }
+
+    h3 {
+        font-size: 2.2rem; /* Larger headings */
+    }
+
+    .power-item {
+        height: 120px; /* Larger item height */
+    }
+
+    .power-item img {
+        max-width: 100px; /* Larger icons */
+        max-height: 100px;
+    }
+
+    .power-item p {
+        font-size: 1.4rem; /* Larger text */
+    }
+}
+
+/* Large Desktops (1920px to 3839px) */
+@media (min-width: 1920px) and (max-width: 3839px) {
+    .background {
+        background: url('4k.png') no-repeat center center fixed; 
+        background-size: cover;
+        background-position: center 27%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+   
+    .container {
+        width: 75%; /* Adequate space on large desktops */
+        max-width: 240px; /* Larger container */
+    }
+
+    .title {
+        font-size: 2rem; /* Larger title */
+    }
+
+    .menu-button {
+        font-size: 1.1rem; /* Larger font size */
+        padding: 12px; /* Larger padding */
+    }
+
+    .menu {
+        gap: 35px; /* Standard gap */
+    }
+
+    .power-ups-downs-container {
+        padding: 30px; /* Adjusted padding */
+        gap: 30px; /* Standard gap */
+    }
+
+    .power-ups,
+    .power-downs {
+        min-width: 300px; /* Adjusted minimum width */
+        padding: 25px; /* Adjusted padding */
+       
+    }
+
+    h3 {
+        font-size: 1.8rem; /* Slightly smaller heading */
+    }
+
+    .power-item {
+        height: 110px; /* Adjusted item height */
+    }
+
+    .power-item img {
+        max-width: 90px; /* Adjusted icons */
+        max-height: 90px;
+    }
+
+    .power-item p {
+        font-size: 1.2rem; /* Adjusted text size */
+    }
+}
+
+/* Medium to Large Desktops (1200px to 1919px) */
+@media (min-width: 1200px) and (max-width: 1919px) {
+    .container {
+        width: 80%; /* Adequate space on large desktops */
+        max-width: 280px; /* Medium-large container */
+    }
+
+    .title {
+        font-size: 2.5rem; /* Large title */
+    }
+
+    .menu-button {
+        font-size: 1rem; /* Larger font size */
+        padding: 15px; /* Larger padding */
+    }
+
+    .menu {
+        gap: 30px; /* Standard gap */
+    }
+
+    .power-ups-downs-container {
+        padding: 25px; /* Adjusted padding */
+        gap: 25px; /* Standard gap */
+    }
+
+    .power-ups,
+    .power-downs {
+        min-width: 250px; /* Adjusted minimum width */
+        padding: 20px; /* Adjusted padding */
+    }
+
+    h3 {
+        font-size: 1.1rem; /* Slightly smaller heading */
+    }
+
+    .power-item {
+        height: 100px; /* Adjusted item height */
+    }
+
+    .power-item img {
+        max-width: 80px; /* Adjusted icons */
+        max-height: 80px;
+    }
+
+    .power-item p {
+        font-size: 15px!important; /* Adjusted text size */
+    }
+}
+
+/* Tablets and Smaller Desktops (768px to 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .container {
+        width: 85%; /* Adjust container width */
+        max-width: 240px; /* Medium container */
+    }
+
+    .title {
+        font-size: 2rem; /* Medium-large title */
+    }
+
+    .menu-button {
+        font-size: 0.9rem; /* Medium font size */
+        padding: 12px; /* Standard padding */
+    }
+
+    .menu {
+        gap: 25px; /* Standard gap */
+    }
+
+    .power-ups-downs-container {
+        flex-direction: column; /* Stack sections vertically */
+        align-items: center; /* Center align items */
+        gap: 20px; /* Reduced gap for smaller screens */
+        padding: 15px; /* Adjusted padding */
+    }
+
+    .power-ups,
+    .power-downs {
+        min-width: 100%; /* Full width sections */
+        max-width: 100%; /* Full width sections */
+        padding: 15px; /* Reduced padding */
+    }
+
+    h3 {
+        font-size: 1.6rem; /* Smaller heading for tablets */
+    }
+
+    .power-item {
+        height: auto; /* Auto height for better responsiveness */
+        flex-direction: column; /* Stack icon and text vertically */
+        align-items: center; /* Center align icon and text */
+    }
+
+    .power-item img {
+        max-width: 60px; /* Adjusted image size */
+        max-height: 60px;
+        margin-bottom: 10px; /* Space between icon and text */
+    }
+
+    .power-item p {
+        font-size: 0.9rem; /* Smaller font size */
+        text-align: center; /* Center align text */
+    }
+}
+
+/* Mobile Devices in Landscape Mode (576px to 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .container {
+        width: 95%; /* Almost full width */
+        max-width: 200px; /* Narrower container */
+    }
+
+    .title {
+        font-size: 1.5rem; /* Smaller title size */
+    }
+
+    .menu-button {
+        font-size: 0.8rem; /* Smaller font size */
+        padding: 10px; /* Standard padding */
+    }
+
+    .menu {
+        gap: 15px; /* Further reduced gap */
+    }
+
+    .power-ups-downs-container {
+        padding: 10px; /* Reduced padding */
+        gap: 15px; /* Further reduced gap */
+    }
+
+    .power-ups,
+    .power-downs {
+        min-width: 100%; /* Full width sections */
+        padding: 10px; /* Minimal padding */
+    }
+
+    h3 {
+        font-size: 1.4rem; /* Smaller heading */
+    }
+
+    .power-item {
+        height: auto; /* Auto height for better fit */
+        flex-direction: column; /* Stack icon and text vertically */
+        align-items: center; /* Center align icon and text */
+    }
+
+    .power-item img {
+        max-width: 50px; /* Smaller image size */
+        max-height: 50px;
+        margin-bottom: 5px; /* Space between icon and text */
+    }
+
+    .power-item p {
+        font-size: 0.8rem; /* Smaller font size */
+        text-align: center; /* Center align text */
+    }
+}
+
+/* Mobile Devices in Portrait Mode (575px and below) */
+@media (max-width: 575px) {
+    .container {
+        width: 95%; /* Almost full width */
+        max-width: 180px; /* Narrowest container */
+    }
+
+    .title {
+        font-size: 1.2rem; /* Even smaller title size */
+    }
+
+    .menu-button {
+        font-size: 0.7rem; /* Smallest font size */
+        padding: 8px; /* Smaller padding */
+    }
+
+    .menu {
+        gap: 10px; /* Smallest gap between buttons */
+    }
+
+    .power-ups-downs-container {
+        flex-direction: column; /* Stack sections vertically */
+        align-items: center; /* Center align sections */
+        gap: 10px; /* Small gap between sections */
+        padding: 5px; /* Minimal padding */
+    }
+
+    .power-ups,
+    .power-downs {
+        min-width: 100%; /* Full width sections */
+        padding: 5px; /* Minimal padding */
+    }
+
+    h3 {
+        font-size: 1.2rem; /* Smallest heading */
+    }
+
+    .power-item {
+        height: auto; /* Auto height for better fit */
+        flex-direction: column; /* Stack icon and text vertically */
+        align-items: center; /* Center align icon and text */
+    }
+
+    .power-item img {
+        max-width: 40px; /* Smallest image size */
+        max-height: 40px;
+        margin-bottom: 5px; /* Space between icon and text */
+    }
+
+    .power-item p {
+        font-size: 0.7rem; /* Smallest font size */
+        text-align: center; /* Center align text */
+    }
+}
+
+/* Full-screen expanded state for the menu */
+.menu-expanded {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top left, #001f3f, #000000);
+    color: #e0e0e0;
+    z-index: 1000;
+    overflow: auto;
+    opacity: 1;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    padding: 30px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif; /* Modern sans-serif font for a sleek look */
+    animation: fadeIn 0.5s ease; /* Fade-in effect on open */
+    visibility: visible;
+}
+
+/* Hidden state with transition for opacity */
+.menu.hidden {
+    opacity: 0;
+    visibility: hidden; /* Ensure the element is not clickable */
+    transition: opacity 0.5s ease, visibility 0.5s ease; /* Transition properties for fade-out effect */
+}
+
+/* Ensure the hidden state removes the element from the layout flow */
+.menu.hidden.transitioning {
+    display: none;
+}
+
+/* Styles for the close button in expanded state */
+.menu-expanded .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #e0e0e0;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background 0.3s ease, transform 0.3s ease;
+    backdrop-filter: blur(8px); /* Add a blur effect for a futuristic touch */
+}
+
+.menu-expanded .close-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1); /* Slightly scale up on hover for a dynamic effect */
+}
+
+/* Header styling for the How to Play page */
+.menu-expanded h2 {
+    font-size: 2.5rem;
+    margin-top: 0;
+    padding: 20px 0;
+    border-bottom: 3px solid #00bfff; /* Bright blue underline for a space feel */
+    font-family: 'Orbitron', sans-serif; /* Futuristic font */
+}
+
+/* Content styling for the How to Play page */
+.menu-expanded p {
+    font-size: 1.9rem;
+    line-height: 1.8;
+    margin: 15px 0;
+    padding: 0 15px;
+    text-align: center;
+}
+
+/* List styling for the How to Play page */
+.menu-expanded ul {
+    list-style-type: none; /* Remove default list styling */
+    margin: 20px auto;
+    padding: 0;
+    text-align: left;
+    display: inline-block;
+}
+
+.menu-expanded ul li {
+    margin: 15px 0;
+    font-size: 1.5rem;
+    position: relative;
+    padding-left: 35px; /* Adjust space for the rocket icon */
+}
+
+/* Rocket bullet as a pseudo-element */
+.menu-expanded ul li::before {
+    content: '\1F680'; /* Rocket emoji */
+    position: absolute;
+    left: 0;
+    color: #00bfff; /* Bright blue color for the rocket */
+    font-size: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Add some spacing around the menu */
+.menu-expanded {
+    padding: 30px;
+}
+
+/* Add a border radius to the content for better visuals */
+.menu-expanded div {
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 255, 0.5); /* Subtle glow effect */
+}
+
+/* Adjust text color and background */
+.menu-expanded h1, .menu-expanded h2, .menu-expanded p, .menu-expanded ul {
+    color: #e0e0e0; /* Light gray text for readability */
+}
+
+/* Fade-in animation for the menu */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/* Styles for the expanded "Controls" menu */
+.controls-expanded {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top left, #003366, #000000);
+    color: #e0e0e0;
+    z-index: 1000;
+    overflow: auto;
+    opacity: 1;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    padding: 30px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif; /* Modern sans-serif font for a sleek look */
+    animation: fadeIn 0.5s ease; /* Fade-in effect on open */
+    visibility: visible;
+}
+
+/* Hidden state with transition for opacity */
+.controls.hidden {
+    opacity: 0;
+    visibility: hidden; /* Ensure the element is not clickable */
+    transition: opacity 0.5s ease, visibility 0.5s ease; /* Transition properties for fade-out effect */
+}
+
+/* Ensure the hidden state removes the element from the layout flow */
+.controls.hidden.transitioning {
+    display: none;
+}
+
+/* Styles for the close button in expanded state */
+.controls-expanded .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #e0e0e0;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background 0.3s ease, transform 0.3s ease;
+    backdrop-filter: blur(8px); /* Add a blur effect for a futuristic touch */
+}
+
+.controls-expanded .close-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1); /* Slightly scale up on hover for a dynamic effect */
+}
+
+/* Header styling for the Controls page */
+.controls-expanded h2 {
+    font-size: 2.5rem;
+    margin-top: 0;
+    padding: 20px 0;
+    border-bottom: 3px solid #00bfff; /* Bright blue underline for a space feel */
+    font-family: 'Orbitron', sans-serif; /* Futuristic font */
+}
+
+/* Content styling for the Controls page */
+.controls-expanded p {
+    font-size: 1.9rem;
+    line-height: 1.8;
+    margin: 15px 0;
+    padding: 0 15px;
+    text-align: center;
+}
+
+/* List styling for the Controls page */
+.controls-expanded ul {
+    list-style-type: none; /* Remove default list styling */
+    margin: 20px auto;
+    padding: 0;
+    text-align: left;
+    display: inline-block;
+}
+
+.controls-expanded ul li {
+    margin: 15px 0;
+    font-size: 1.5rem;
+    position: relative;
+    padding-left: 50px; /* Adjust space for the game controller icon */
+}
+
+/* Game controller bullet as a pseudo-element */
+.controls-expanded ul li::before {
+    content: '\1F3AE'; /* Game controller emoji */
+    position: absolute;
+    left: 0;
+    color: #00bfff; /* Bright blue color for the controller */
+    font-size: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Style for images in the controls menu */
+.controls-expanded img {
+    max-width: 60px; /* Limit the maximum width of the images */
+    max-height: 60px; /* Limit the maximum height of the images */
+    width: auto; /* Maintain aspect ratio */
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+    margin: 0 auto; /* Center align images */
+}
+
+/* Add some spacing around the menu */
+.controls-expanded {
+    padding: 30px;
+}
+
+/* Add a border radius to the content for better visuals */
+.controls-expanded div {
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 255, 0.5); /* Subtle glow effect */
+}
+
+/* Adjust text color and background */
+.controls-expanded h1, .controls-expanded h2, .controls-expanded p, .controls-expanded ul {
+    color: #e0e0e0; /* Light gray text for readability */
+}
+
+/* Fade-in animation for the menu */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+table td, table th {
+    padding: 12px; /* Adjust this value to increase/decrease spacing */
+}
+table {
+    width: 100%; /* Sets the table to take up 100% of the parent container's width */
+    
+    margin: 0 auto; /* Centers the table */
+}
+
+/* Ultra High Resolution Screens (4K and above, 3840px and above) */
+@media (min-width: 3840px) {
+    .controls-expanded {
+        padding: 40px; /* More padding for ultra high-resolution screens */
+    }
+
+    .controls-expanded h2 {
+        font-size: 3rem; /* Larger title for ultra high-resolution screens */
+    }
+
+    .controls-expanded p {
+        font-size: 2.2rem; /* Larger text */
+    }
+
+    .controls-expanded ul li {
+        font-size: 1.8rem; /* Larger list items */
+    }
+
+    .controls-expanded img {
+        max-width: 80px; /* Larger icons */
+        max-height: 80px;
+    }
+}
+
+/* Large Desktops (1920px to 3839px) */
+@media (min-width: 1920px) and (max-width: 3839px) {
+    .controls-expanded {
+        padding: 35px; /* Adjusted padding */
+    }
+
+    .controls-expanded h2 {
+        font-size: 2.8rem; /* Larger title */
+    }
+
+    .controls-expanded p {
+        font-size: 2rem; /* Larger text */
+    }
+
+    .controls-expanded ul li {
+        font-size: 1.7rem; /* Larger list items */
+    }
+
+    .controls-expanded img {
+        max-width: 55px; /* Larger icons */
+        max-height: 55px;
+    }
+}
+
+/* Medium to Large Desktops (1200px to 1919px) */
+@media (min-width: 1200px) and (max-width: 1919px) {
+    .controls-expanded {
+        padding: 10px; /* Adjusted padding */
+    }
+
+    .controls-expanded h2 {
+        font-size: 1rem; /* Large title */
+    }
+
+    .controls-expanded p {
+        font-size: 1rem; /* Larger text */
+    }
+
+    .controls-expanded ul li {
+        font-size: 1.5rem; /* Standard list items */
+    }
+
+    .controls-expanded img {
+        max-width: 30px; /* Standard icons */
+        max-height: 30px;
+    }
+
+    table td, table th {
+        padding: 12px; /* Adjust this value to increase/decrease spacing */
+        font-size: 10px;
+    }
+    table {
+        width: 100%; /* Sets the table to take up 100% of the parent container's width */
+        
+        margin: 0 auto; /* Centers the table */
+    }
+}
+
+/* Tablets and Smaller Desktops (768px to 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .controls-expanded {
+        padding: 25px; /* Adjusted padding */
+    }
+
+    .controls-expanded h2 {
+        font-size: 2rem; /* Medium-large title */
+    }
+
+    .controls-expanded p {
+        font-size: 1.6rem; /* Smaller text */
+    }
+
+    .controls-expanded ul li {
+        font-size: 1.3rem; /* Smaller list items */
+    }
+
+    .controls-expanded img {
+        max-width: 50px; /* Smaller icons */
+        max-height: 50px;
+    }
+}
+
+/* Mobile Devices in Landscape Mode (576px to 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .controls-expanded {
+        padding: 15px; /* Reduced padding */
+    }
+
+    .controls-expanded h2 {
+        font-size: 1.6rem; /* Smaller title size */
+    }
+
+    .controls-expanded p {
+        font-size: 1.4rem; /* Smaller text */
+    }
+
+    .controls-expanded ul li {
+        font-size: 1.2rem; /* Smaller list items */
+    }
+
+    .controls-expanded img {
+        max-width: 40px; /* Smaller icons */
+        max-height: 40px;
+    }
+}
+
+/* Mobile Devices in Portrait Mode (575px and below) */
+@media (max-width: 575px) {
+    .controls-expanded {
+        padding: 10px; /* Minimal padding */
+    }
+
+    .controls-expanded h2 {
+        font-size: 1.2rem; /* Smallest title size */
+    }
+
+    .controls-expanded p {
+        font-size: 1.2rem; /* Smallest text */
+    }
+
+    .controls-expanded ul li {
+        font-size: 1rem; /* Smallest list items */
+    }
+
+    .controls-expanded img {
+        max-width: 30px; /* Smallest icons */
+        max-height: 30px;
+    }
+}
+
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.close-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    transform: scale(1.1);
+}
+
+.close-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+.close-icon {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+.container {
+    background-color: #ffffff; /* Background color */
+    border-radius: 10px; /* Rounded corners, adjust as needed */
+    
+    box-shadow: 0 0 20px 5px rgba(23, 23, 70, 0.8); /* Blue glow effect */
+    transition: box-shadow 0.3s ease-in-out; /* Transition for smooth effect */
+  }
+  
+  .container:hover {
+    box-shadow: 0 0 40px 10px rgba(32, 32, 165, 0.5);  /* Intensified glow on hover */
+    
+  }
+
+  .container {
+    background: linear-gradient(to bottom right, #0e1d3c, #1f4287); /* Dark blue to navy gradient background */
+   
+    font-family: 'Arial', sans-serif; /* Font choice */
+    
+  
+    /* Optional: Adding a subtle animation for a twinkling effect */
+    animation: twinkling 5s linear infinite;
+  }
+  
+  @keyframes twinkling {
+    0% { opacity: 1; }
+    50% { opacity: 0.8; }
+    100% { opacity: 1; }
+  }
